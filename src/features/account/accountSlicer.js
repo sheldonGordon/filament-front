@@ -1,4 +1,3 @@
-import {createAsyncThunk} from "@reduxjs/toolkit/src/createAsyncThunk";
 import {
     fetchDeleteAccount,
     fetchGetAccountById,
@@ -7,51 +6,50 @@ import {
     fetchUpdateAccount
 } from "./accountAPI";
 
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 
 const initialState={
-    account:{},
+    accounts:[],
     status: null
 }
 
-
 export const getAllAccountAsync = createAsyncThunk(
-    'account/getAll',
-    async () => {
+    'accounts/getAll',
+    async (dispatch, getState) => {
         return await fetchGetAllAccount()
     }
 )
 
 export const getAccountByIdAsync = createAsyncThunk(
-    'account/getById',
+    'accounts/getById',
     async (id) => {
         return await fetchGetAccountById(id)
     }
 )
 
 export const saveAccountAsync = createAsyncThunk(
-    'account/save',
+    'accounts/save',
     async (account) => {
         return await fetchSaveAccount(account)
     }
 )
 
 export const updateAccountAsync = createAsyncThunk(
-    'account/update',
+    'accounts/update',
     async (account) => {
         return await fetchUpdateAccount(account)
     }
 )
 
 export const deleteAccountByIdAsync = createAsyncThunk(
-    'account/deleteById',
+    'accounts/deleteById',
     async (id) => {
         return await fetchDeleteAccount(id)
     }
 )
 
 export const accountSlicer = createSlice({
-    name: 'account',
+    name: 'accounts',
     initialState,
     extraReducers: (builder) => {
         builder
@@ -60,7 +58,7 @@ export const accountSlicer = createSlice({
             })
             .addCase(getAllAccountAsync.fulfilled, (state, action) => {
                 state.status = 'success'
-                state.account = action.payload
+                state.accounts = action.payload
             })
             .addCase(getAllAccountAsync.rejected, (state) => {
                 state.status = 'failed'
@@ -70,7 +68,7 @@ export const accountSlicer = createSlice({
             })
             .addCase(getAccountByIdAsync.fulfilled, (state, action) => {
                 state.status = 'success'
-                state.account = action.payload
+                state.accounts = action.payload
             })
             .addCase(getAccountByIdAsync.rejected, (state) => {
                 state.status = 'failed'
@@ -80,7 +78,7 @@ export const accountSlicer = createSlice({
             })
             .addCase(saveAccountAsync.fulfilled, (state, action) => {
                 state.status = 'success'
-                state.account = action.payload
+                state.accounts = action.payload
             })
             .addCase(saveAccountAsync.rejected, (state) => {
                 state.status = 'failed'
@@ -90,7 +88,7 @@ export const accountSlicer = createSlice({
             })
             .addCase(updateAccountAsync.fulfilled, (state, action) => {
                 state.status = 'success'
-                state.account = action.payload
+                state.accounts = action.payload
             })
             .addCase(updateAccountAsync.rejected, (state) => {
                 state.status = 'failed'
@@ -106,3 +104,5 @@ export const accountSlicer = createSlice({
             })
     }
 })
+
+export default accountSlicer.reducer
