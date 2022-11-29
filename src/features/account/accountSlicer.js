@@ -98,6 +98,7 @@ export const accountSlicer = createSlice({
             })
             .addCase(deleteAccountByIdAsync.fulfilled, (state, action) => {
                 state.status = 'success'
+                state.accounts = action.payload
             })
             .addCase(deleteAccountByIdAsync.rejected, (state) => {
                 state.status = 'failed'

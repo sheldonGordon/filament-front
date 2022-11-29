@@ -7,6 +7,7 @@ import {
 import NavBar from "./components/NavBar";
 import Accueil from "./components/Accueil";
 import {AccountList} from "./features/account/components/AccountList";
+import {AccountAdd} from "./features/account/components/AccountAdd";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
             <Route exact path="/" element={<Accueil />}></Route>
             <Route path="/account/list" element={<AccountList />}></Route>
+            <Route path="account/add" element={<AccountAdd />}></Route>
         </Routes>
     </BrowserRouter>
   );

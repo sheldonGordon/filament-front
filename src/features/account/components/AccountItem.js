@@ -1,15 +1,21 @@
+import {Button} from "react-bootstrap";
+
 const AccountItem = (props) => {
     const { account } = props;
 
     return (
-        <div>
-            <label>
+        <tr>
+            <td>
                 {account.firstName}
-            </label>
-            <label>
+            </td>
+            <td>
                 {account.lastName}
-            </label>
-        </div>
+            </td>
+            <td>
+                <Button variant="primary">Edit</Button>
+                <Button variant="danger">Delete</Button>
+            </td>
+        </tr>
     );
 };
 
