@@ -1,29 +1,27 @@
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import {getAccountByIdAsync, getAllAccountAsync} from "../accountSlicer";
+import {deleteAccountByIdAsync, getAllAccountAsync} from "../accountSlicer";
 import AccountItem from "./AccountItem";
 import {Container, Table, Modal, Button} from "react-bootstrap";
 
 
 export function AccountList() {
     const [show, setShow] = useState(false);
-    const [accountDelete, setAccountDelete] = useState("");
     const [selectedAccount, setSelectedAccount] = useState({});
 
     const dispatch = useDispatch();
     const handleClose = () => setShow(false);
 
-    function selectedAccountToDelete(accountDelete){
+    function selectedAccountToDelete(account){
         setShow(true);
-        setAccountDelete(accountDelete);
-        selectedAccountById(accountDelete);
+        setSelectedAccount(account);
     }
 
-    function selectedAccountById(accountId){
-        console.log("laaaaaaaaaaaaa");
-        dispatch(getAccountByIdAsync(accountId));
+    function deleteAccountById(){
+        //dispatch({ type: 'accounts/deleteById', payload: selectedAccount.id });
+        dispatch(deleteAccountByIdAsync(selectedAccount.id))
+        handleClose();
     }
-
 
     dispatch(getAllAccountAsync())
     const accounts = useSelector((state) => state.accounts.accounts)
@@ -52,15 +50,15 @@ export function AccountList() {
             <Button variant="danger" onClick={() => setShow(true)}>Show</Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Deleted Account</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Deleted Account {accountDelete}</Modal.Body>
+                <Modal.Body>Are you sur to delete {selectedAccount.firstName} {selectedAccount.lastName}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        Cancel
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
+                    <Button variant="danger" onClick={deleteAccountById}>
+                        Delete Account
                     </Button>
                 </Modal.Footer>
             </Modal>

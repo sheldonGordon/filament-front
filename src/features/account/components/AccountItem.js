@@ -3,7 +3,7 @@ import {Button} from "react-bootstrap";
 const AccountItem = (props) => {
     const { account } = props;
     function deleteAccount() {
-        props.selectedAccountDelete(account.id);
+        props.selectedAccountDelete(account);
     }
 
     return (
