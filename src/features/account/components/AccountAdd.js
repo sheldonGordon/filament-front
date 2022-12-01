@@ -9,9 +9,9 @@ export function AccountAdd() {
 
     const submitAddAccount = (event) => {
         event.preventDefault();
-        console.log("got email");
         dispatch(saveAccountAsync({id, firstName, lastName}))
     };
+
     const [formValue, setFormValue] = useState({
         id: uuid(),
         username: "",

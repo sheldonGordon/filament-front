@@ -10,6 +10,7 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 
 const initialState={
     accounts:[],
+    selectedAccount: {},
     status: null
 }
 
@@ -98,7 +99,7 @@ export const accountSlicer = createSlice({
             })
             .addCase(deleteAccountByIdAsync.fulfilled, (state, action) => {
                 state.status = 'success'
-                state.accounts = action.payload
+                state.selectedAccount = action.payload
             })
             .addCase(deleteAccountByIdAsync.rejected, (state) => {
                 state.status = 'failed'
