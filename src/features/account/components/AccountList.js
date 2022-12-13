@@ -31,7 +31,6 @@ export function AccountList() {
             <Table>
                 <thead>
                     <tr>
-                        <th>id</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Actions</th>
@@ -47,7 +46,6 @@ export function AccountList() {
                     ))}
                 </tbody>
             </Table>
-            <Button variant="danger" onClick={() => setShow(true)}>Show</Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Deleted Account</Modal.Title>
