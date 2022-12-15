@@ -1,23 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {Button, Container, Form} from "react-bootstrap";
 import {saveAccountAsync} from "../accountSlicer";
 import uuid from 'react-uuid';
 import {useDispatch} from "react-redux";
-import {AlertList} from "react-bs-notifier";
+import ToastComponent from "../../../components/ToastComponent";
 
 export function AccountAdd() {
     const dispatch = useDispatch();
+    const toastComponentRef = useRef(null);
 
-    const [alerts, setAlerts] = useState([]);
-
-    const addNewAlert = (headline, type, message) =>{
-        setAlerts([{
-            id: new Date().getTime(),
-            headline: headline,
-            type: type,
-            message: message
-        }])
-    }
     const initialState = {
         firstName: "",
         lastName: ""
@@ -31,7 +22,7 @@ export function AccountAdd() {
 
     const submitAddAccount = (event) => {
         event.preventDefault();
-        dispatch(saveAccountAsync({id: uuid(), firstName, lastName })).then(clearState).then(addNewAlert("Success", "success", "Account correctly add"));
+        dispatch(saveAccountAsync({id: uuid(), firstName, lastName })).then(clearState).then(toastComponentRef.current.setValueToast("success","coucou", "test"));
         event.target.reset();
     };
 
@@ -47,8 +38,7 @@ export function AccountAdd() {
 
     return(
         <Container>
-            <AlertList alerts={alerts} />
-
+            <ToastComponent ref={toastComponentRef} showToast={false}/>
             <Form name={"addAccount"} onSubmit={submitAddAccount}>
                 <Form.Group className="mb-3">
                     <Form.Label>First Name</Form.Label>
