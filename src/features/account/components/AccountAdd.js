@@ -22,7 +22,9 @@ export function AccountAdd() {
 
     const submitAddAccount = (event) => {
         event.preventDefault();
-        dispatch(saveAccountAsync({id: uuid(), firstName, lastName })).then(clearState).then(toastComponentRef.current.setValueToast("success","coucou", "test"));
+        dispatch(saveAccountAsync({id: uuid(), firstName, lastName })).then(clearState)
+            .then(toastComponentRef.current.setValueToast("success","Account add with success", `the ${firstName} ${lastName} account has been added`))
+            .catch(toastComponentRef.current.setValueToast("danger","Account was not created", "error while adding, please try again later"));
         event.target.reset();
     };
 

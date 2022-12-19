@@ -6,7 +6,7 @@ const ToastComponent = forwardRef((props, ref) =>{
     const [typeToast, setTypeToast] = useState("success")
     const [headerToast, setHeaderToast] = useState("");
     const [bodyToast, setBodyToast] = useState("");
-    const [delayToast, setDelayToast] = useState(20000);
+    const [delayToast, setDelayToast] = useState(5000);
 
     useImperativeHandle(ref, () => ({
         setValueToast(type, header, body, delay = delayToast)
@@ -26,7 +26,7 @@ const ToastComponent = forwardRef((props, ref) =>{
                 autohide
                 show={showToast}
                 delay={delayToast}
-                bg={typeToast}
+                bg={typeToast.toLowerCase()}
             >
                 <Toast.Header>
                     <strong className="me-auto">{headerToast}</strong>
