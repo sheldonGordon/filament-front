@@ -9,6 +9,9 @@ const AccountItem = (props) => {
     return (
         <tr>
             <td>
+                {account.aliasName}
+            </td>
+            <td>
                 {account.firstName}
             </td>
             <td>

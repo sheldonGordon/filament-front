@@ -31,6 +31,7 @@ export function AccountList() {
             <Table>
                 <thead>
                     <tr>
+                        <th>Alias Name</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Actions</th>
@@ -50,7 +51,7 @@ export function AccountList() {
                 <Modal.Header closeButton>
                     <Modal.Title>Deleted Account</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Are you sur to delete {selectedAccount.firstName} {selectedAccount.lastName}</Modal.Body>
+                <Modal.Body>Are you sur to delete {selectedAccount.aliasName}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Cancel

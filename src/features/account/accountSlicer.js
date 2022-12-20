@@ -1,5 +1,6 @@
 import {
     fetchDeleteAccount,
+    fetchGetAccountByAlias,
     fetchGetAccountById,
     fetchGetAllAccount,
     fetchSaveAccount,
@@ -24,6 +25,13 @@ export const getAccountByIdAsync = createAsyncThunk(
     'accounts/getById',
     async (id) => {
         return await fetchGetAccountById(id)
+    }
+)
+
+export const getAccountByAliasAsync = createAsyncThunk(
+    'accounts/getByAlias',
+    async (alias) => {
+        return await fetchGetAccountByAlias(alias)
     }
 )
 
